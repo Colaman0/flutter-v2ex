@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
-import 'package:flutter/scheduler.dart';
-import 'package:flutterapp/Router.dart';
+import 'package:flutter/services.dart';
+import 'package:flutterapp/view/Home.dart';
 
-import 'MainHome.dart';
-
-void main() => runApp(new MyApp());
+void main() {
+  runApp(new MyApp());
+  SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle.light);
+}
 
 class MyApp extends StatelessWidget {
   var currentPage = 0;
@@ -32,40 +33,31 @@ class HomeState extends State<Home> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        centerTitle: true,
-        title: Text("home"),
-        leading: Container(
-          decoration: BoxDecoration(color: Colors.red),
-          alignment: Alignment.center,
-          child: Row(
-            children: <Widget>[
-              Icon(Icons.arrow_back_ios),
-              Text("首页"),
-            ],
-          ),
+    return SafeArea(
+
+      child: Scaffold(
+        backgroundColor: Colors.white,
+        bottomNavigationBar: BottomNavigationBar(
+          currentIndex: currentPage,
+          items: [
+            BottomNavigationBarItem(title: Text("首页"), icon: Icon(Icons.home)),
+            BottomNavigationBarItem(
+                title: Text("热点"), icon: Icon(Icons.hot_tub)),
+            BottomNavigationBarItem(title: Text("我的"), icon: Icon(Icons.people))
+          ],
+          onTap: onPageSwitch,
         ),
-      ),
-      bottomNavigationBar: BottomNavigationBar(
-        currentIndex: currentPage,
-        items: [
-          BottomNavigationBarItem(title: Text("首页"), icon: Icon(Icons.home)),
-          BottomNavigationBarItem(title: Text("热点"), icon: Icon(Icons.hot_tub)),
-          BottomNavigationBarItem(title: Text("我的"), icon: Icon(Icons.people))
-        ],
-        onTap: onPageSwitch,
-      ),
-      body: PageView(
-        physics: NeverScrollableScrollPhysics(),
-        controller: pageController,
-        onPageChanged: onPageChange,
-        children: <Widget>[
-          MainHome(),
-          Text("热点"),
-          Text("我的"),
-        ],
-      ),
+        body: PageView(
+          physics: NeverScrollableScrollPhysics(),
+          controller: pageController,
+          onPageChanged: onPageChange,
+          children: <Widget>[
+            HomePage(),
+            Text("热点"),
+            Text("我的"),
+          ],
+        ),
+      )
     );
   }
 
