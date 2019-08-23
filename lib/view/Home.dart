@@ -1,6 +1,11 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutterapp/api/Api.dart';
+import 'package:flutterapp/entity/hot_movie_entity_entity.dart';
 import 'package:flutterapp/main.dart';
+
+import 'HomeHotMovie.dart';
+import 'HomeMovieRank.dart';
 
 class HomePage extends StatefulWidget {
   @override
@@ -11,18 +16,15 @@ class _HomePageState extends State<HomePage>
     with SingleTickerProviderStateMixin {
   var isLoading = false;
   TabController tabController;
-  var titles = List<String>();
+  var titles = List.of({"影院热映", "电影榜单", "豆瓣热门", "热门综艺", "热门剧集"});
 
-  _HomePageState() {
-    for (int i = 0; i < 10; i++) {
-      titles.add("title $i");
-    }
-  }
+  _HomePageState() {}
 
   @override
   Widget build(BuildContext context) {
     return isLoading ? getLoading() : getContent();
   }
+
 
   @override
   initState() {
@@ -51,7 +53,9 @@ class _HomePageState extends State<HomePage>
           flex: 1,
           child: TabBarView(
             controller: tabController,
-            children: titles.map((title) => PageContentWidget(title)).toList(),
+            children: <Widget>[
+              HomeHotMoive(),HomeMovieRank(),HomeHotMoive(),HomeHotMoive(),HomeHotMoive()
+            ],
           ),
         )
       ],
@@ -107,7 +111,7 @@ class PageContentWidgetState extends State<PageContentWidget>
         controller: ScrollController(keepScrollOffset: true),
         itemExtent: 50,
         itemBuilder: (BuildContext context, int index) {
-          return Text(" title $title item $index");
+          return Text(title);
         });
   }
 

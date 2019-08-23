@@ -34,31 +34,28 @@ class HomeState extends State<Home> {
   @override
   Widget build(BuildContext context) {
     return SafeArea(
-
-      child: Scaffold(
-        backgroundColor: Colors.white,
-        bottomNavigationBar: BottomNavigationBar(
-          currentIndex: currentPage,
-          items: [
-            BottomNavigationBarItem(title: Text("首页"), icon: Icon(Icons.home)),
-            BottomNavigationBarItem(
-                title: Text("热点"), icon: Icon(Icons.hot_tub)),
-            BottomNavigationBarItem(title: Text("我的"), icon: Icon(Icons.people))
-          ],
-          onTap: onPageSwitch,
-        ),
-        body: PageView(
-          physics: NeverScrollableScrollPhysics(),
-          controller: pageController,
-          onPageChanged: onPageChange,
-          children: <Widget>[
-            HomePage(),
-            Text("热点"),
-            Text("我的"),
-          ],
-        ),
-      )
-    );
+        child: Scaffold(
+      backgroundColor: Colors.white,
+      bottomNavigationBar: BottomNavigationBar(
+        currentIndex: currentPage,
+        items: [
+          BottomNavigationBarItem(title: Text("首页"), icon: Icon(Icons.home)),
+          BottomNavigationBarItem(title: Text("热点"), icon: Icon(Icons.hot_tub)),
+          BottomNavigationBarItem(title: Text("我的"), icon: Icon(Icons.people))
+        ],
+        onTap: onPageSwitch,
+      ),
+      body: PageView(
+        physics: NeverScrollableScrollPhysics(),
+        controller: pageController,
+        onPageChanged: onPageChange,
+        children: <Widget>[
+          HomePage(),
+          Text("热点"),
+          Text("我的"),
+        ],
+      ),
+    ));
   }
 
   void onPageSwitch(int index) {
