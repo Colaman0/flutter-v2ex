@@ -13,6 +13,30 @@ Widget getEndItem() {
   );
 }
 
+
+
+Widget getNoMoreItem() {
+  return SizedBox(
+    height: 36,
+    child: FlatButton(
+      child: Text("没有更多"),
+      onPressed: () {},
+    ),
+  );
+}
+
+Widget getLoadmoreItem() {
+  return Container(
+    margin: EdgeInsets.only(top: 8, bottom: 8),
+    alignment: Alignment.center,
+    child: SizedBox(
+      height: 20,
+      width: 20,
+      child: CircularProgressIndicator(),
+    ),
+  );
+}
+
 /// 位于中间的loading
 Widget getLoading() {
   return Center(
@@ -20,4 +44,12 @@ Widget getLoading() {
       child: CircularProgressIndicator(),
     ),
   );
+}
+
+double getScreenWidth(BuildContext context) {
+  return MediaQuery.of(context).size.width;
+}
+
+double getScreenHeight(BuildContext context) {
+  return MediaQuery.of(context).size.height;
 }

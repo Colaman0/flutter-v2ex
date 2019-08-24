@@ -1,8 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutterapp/api/Api.dart';
-import 'package:flutterapp/entity/hot_movie_entity_entity.dart';
-import 'package:flutterapp/main.dart';
+import 'package:flutterapp/view/HomeDoubanHot.dart';
+import 'package:flutterapp/view/HomeTV.dart';
+import 'package:flutterapp/view/HomeTVShow.dart';
 
 import 'HomeHotMovie.dart';
 import 'HomeMovieRank.dart';
@@ -24,7 +24,6 @@ class _HomePageState extends State<HomePage>
   Widget build(BuildContext context) {
     return isLoading ? getLoading() : getContent();
   }
-
 
   @override
   initState() {
@@ -54,7 +53,11 @@ class _HomePageState extends State<HomePage>
           child: TabBarView(
             controller: tabController,
             children: <Widget>[
-              HomeHotMoive(),HomeMovieRank(),HomeHotMoive(),HomeHotMoive(),HomeHotMoive()
+              HomeHotMoive(),
+              HomeMovieRank(),
+              HomeDoubanHot(),
+              HomeTVShow(),
+              HomeTV()
             ],
           ),
         )
