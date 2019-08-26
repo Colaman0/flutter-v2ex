@@ -26,7 +26,7 @@ class _ItemHotMovieWidgetState extends State<ItemHotMovieWidget> {
       behavior: HitTestBehavior.translucent,
       onTap: () {
         Navigator.push(context, MaterialPageRoute(builder: (context) {
-          return MovieDetailRoute();
+          return MovieDetailRoute(itemEntity);
         }));
       },
       child: Container(
